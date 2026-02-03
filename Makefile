@@ -12,6 +12,12 @@
 # WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the LICENSE file for details.
 
-.PHONY: all
+BUILD_DIR := build
+
+.PHONY: all clean
 
 all:
+
+clean:
+	@echo "Cleaning..."
+	@rm -rf "$(BUILD_DIR)"
