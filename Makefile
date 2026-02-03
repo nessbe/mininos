@@ -12,6 +12,14 @@
 # WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the LICENSE file for details.
 
+ifndef verbose
+	verbose := 0
+endif
+
+ifeq ($(verbose), 0)
+	SILENT := @
+endif
+
 BUILD_DIR := build
 
 .PHONY: all clean
@@ -20,4 +28,4 @@ all:
 
 clean:
 	@echo "Cleaning..."
-	@rm -rf "$(BUILD_DIR)"
+	$(SILENT) rm -rf "$(BUILD_DIR)"
