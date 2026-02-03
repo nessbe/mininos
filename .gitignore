@@ -14,3 +14,6 @@
 
 # Build directory (reproducible binary artifacts)
 build/
+
+# Visual Studio Code user and workspace settings
+.vscode/
