@@ -19,7 +19,7 @@ SUBDIRS := src
 .PHONY: all clean
 
 all:
-	for d in $(SUBDIRS); do $(MAKE) -C $$d; done
+	@for d in $(SUBDIRS); do $(MAKE) --no-print-directory -C $$d; done
 
 clean:
 	@echo "Cleaning..."

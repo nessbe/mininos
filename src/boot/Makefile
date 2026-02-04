@@ -1,4 +1,4 @@
-# File:       src/Makefile
+# File:       src/boot/Makefile
 # Project:    MininOS
 # Repository: https://github.com/nessbe/mininos
 #
@@ -12,9 +12,20 @@
 # WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the LICENSE file for details.
 
-SUBDIRS := boot
+MODULE_NAME := boot
+
+SRC_DIR   := .
+BUILD_DIR := ../../build
+
+include ../../make/config.mk
+
+SRC := $(wildcard $(SRC_DIR)/*.asm)
+OBJ := $(patsubst $(SRC_DIR)/%.asm,$(OBJ_DIR)/%.o,$(SRC))
 
 .PHONY: all
 
-all:
-	@for d in $(SUBDIRS); do $(MAKE) --no-print-directory -C $$d; done
+all: $(OBJ)
+
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.asm
+	@mkdir -p $(OBJ_DIR)
+	$(SILENT) $(NASM) $< $(NASM_FLAGS) -f bin -o $@

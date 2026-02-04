@@ -12,8 +12,13 @@
 # WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the LICENSE file for details.
 
+MODULE_NAME ?=
+
 SRC_DIR   ?= src
 BUILD_DIR ?= build
+
+OBJ_DIR = $(BUILD_DIR)/obj/$(MODULE_NAME)
+BIN_DIR = $(BUILD_DIR)/bin/$(MODULE_NAME)
 
 ifndef verbose
 	verbose := 0
@@ -24,3 +29,7 @@ ifeq ($(verbose), 0)
 endif
 
 SILENT ?=
+
+NASM := nasm
+
+NASM_FLAGS :=
