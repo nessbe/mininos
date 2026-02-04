@@ -1,4 +1,4 @@
-# File:       Makefile
+# File:       make/config.mk
 # Project:    MininOS
 # Repository: https://github.com/nessbe/mininos
 #
@@ -12,12 +12,15 @@
 # WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the LICENSE file for details.
 
-include make/config.mk
+SRC_DIR   ?= src
+BUILD_DIR ?= build
 
-.PHONY: all clean
+ifndef verbose
+	verbose := 0
+endif
 
-all:
+ifeq ($(verbose), 0)
+	SILENT := @
+endif
 
-clean:
-	@echo "Cleaning..."
-	$(SILENT) rm -rf "$(BUILD_DIR)"
+SILENT ?=
