@@ -1,4 +1,4 @@
-# File:       Makefile
+# File:       src/Makefile
 # Project:    MininOS
 # Repository: https://github.com/nessbe/mininos
 #
@@ -12,15 +12,6 @@
 # WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the LICENSE file for details.
 
-include make/config.mk
-
-SUBDIRS := src
-
-.PHONY: all clean
+.PHONY: all
 
 all:
-	for d in $(SUBDIRS); do $(MAKE) -C $$d; done
-
-clean:
-	@echo "Cleaning..."
-	$(SILENT) rm -rf "$(BUILD_DIR)"
