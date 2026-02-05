@@ -1,4 +1,4 @@
-# File:       make/config.mk
+# File:       make/tools.mk
 # Project:    MininOS
 # Repository: https://github.com/nessbe/mininos
 #
@@ -12,18 +12,6 @@
 # WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the LICENSE file for details.
 
-MODULE_NAME ?=
+NASM := nasm
 
-SRC_DIR   ?= src
-BUILD_DIR ?= build
-
-OBJ_DIR = $(BUILD_DIR)/obj/$(MODULE_NAME)
-BIN_DIR = $(BUILD_DIR)/bin/$(MODULE_NAME)
-
-verbose ?= 0
-
-ifeq ($(verbose), 0)
-	SILENT := @
-endif
-
-SILENT ?=
+NASM_FLAGS :=

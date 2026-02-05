@@ -18,6 +18,7 @@ SRC_DIR   := .
 BUILD_DIR := ../../build
 
 include ../../make/config.mk
+include ../../make/tools.mk
 
 SRC := $(wildcard $(SRC_DIR)/*.asm)
 OBJ := $(patsubst $(SRC_DIR)/%.asm,$(OBJ_DIR)/%.o,$(SRC))
@@ -28,4 +29,5 @@ all: $(OBJ)
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.asm
 	@mkdir -p $(OBJ_DIR)
+	@echo $<
 	$(SILENT) $(NASM) $< $(NASM_FLAGS) -f bin -o $@
