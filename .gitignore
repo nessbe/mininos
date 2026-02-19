@@ -6,3 +6,6 @@
 # LICENSE file located at the root of this repository.
 
 build/
+
+# Visual Studio Code
+.vscode/
