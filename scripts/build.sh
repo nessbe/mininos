@@ -9,11 +9,4 @@
 
 BUILD_DIR=build
 
-if ! command -v cmake >/dev/null 2>&1
-then
-	echo "'cmake' binary could not be found"
-	exit 1
-fi
-
-cmake -S . -B "$BUILD_DIR"
 cmake --build "$BUILD_DIR"
