@@ -1,4 +1,4 @@
-# scripts/build.sh
+# scripts/default_generator.sh
 #
 # Copyright (c) 2026-Present Nessbe
 #
@@ -7,7 +7,4 @@
 
 #!/usr/bin/sh
 
-BUILD_DIR=build
-
-scripts/default_generator.sh
-cmake --build "$BUILD_DIR"
+scripts/generate_unix_makefiles.sh

@@ -10,4 +10,5 @@
 BUILD_DIR=build
 RUN_TARGET=run
 
+scripts/default_generator.sh
 cmake --build "$BUILD_DIR" --target $RUN_TARGET
