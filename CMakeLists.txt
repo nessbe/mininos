@@ -13,3 +13,5 @@ set(ROOT_DIR "${CMAKE_SOURCE_DIR}")
 set(BUILD_DIR "${ROOT_DIR}/build")
 set(BIN_DIR "${BUILD_DIR}/bin")
 set(OBJ_DIR "${BUILD_DIR}/obj")
+
+add_subdirectory(src)
