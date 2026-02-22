@@ -1,10 +1,8 @@
-# src/CMakeLists.txt
+# src/boot/CMakeLists.txt
 #
 # Copyright (c) 2026-Present Nessbe
 #
 # This file is licensed under the terms specified in the
 # LICENSE file located at the root of this repository.
 
-set(SRC_DIR "${ROOT_DIR}/src")
-
-add_subdirectory(boot)
+set(BOOT_DIR "${SRC_DIR}/boot")
