@@ -7,7 +7,7 @@
 
 cmake_minimum_required(VERSION 3.20)
 
-project(mininos)
+project(mininos ASM_NASM)
 
 set(ROOT_DIR "${CMAKE_SOURCE_DIR}")
 set(BUILD_DIR "${ROOT_DIR}/build")
