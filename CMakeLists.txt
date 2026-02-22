@@ -14,4 +14,6 @@ set(BUILD_DIR "${ROOT_DIR}/build")
 set(BIN_DIR "${BUILD_DIR}/bin")
 set(OBJ_DIR "${BUILD_DIR}/obj")
 
+include(cmake/qemu.cmake)
+
 add_subdirectory(src)
