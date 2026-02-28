@@ -4,3 +4,8 @@
 #
 # This file is licensed under the terms specified in the
 # LICENSE file located at the root of this repository.
+
+nasm_binary_flags = [
+	'-f',
+	'bin'
+]
