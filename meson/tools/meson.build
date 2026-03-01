@@ -6,3 +6,5 @@
 # LICENSE file located at the root of this repository.
 
 nasm = find_program('nasm', required: true)
+
+qemu = find_program('qemu', required: true)
