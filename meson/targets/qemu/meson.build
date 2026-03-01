@@ -4,3 +4,8 @@
 #
 # This file is licensed under the terms specified in the
 # LICENSE file located at the root of this repository.
+
+run_qemu = run_target(
+	'run_qemu',
+	command: [ qemu, '-drive', 'format=raw,file=@0@'.format(bootloader.full_path()) ]
+)
