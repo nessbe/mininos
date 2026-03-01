@@ -9,31 +9,32 @@
 
 set -euo pipefail
 
-if [ "$#" -lt 1 ]; then
+source scripts/lib/assert_command.sh
+source scripts/lib/fetch_argument.sh
+
+MESON="meson"
+
+ARCHITECTURE=$(fetch_argument 0 $@ 2>/dev/null) || {
 	echo "Invalid usage of run.sh, expected an architecture as the first argument"
 	exit 1
-fi
-
-ARCHITECTURE="$1"
-sh scripts/build.sh "$ARCHITECTURE"
+}
 
 LOG_FILE="logs/qemu-run.log"
 LOG_DIR=$(dirname "$LOG_FILE")
 
+BUILD_DIR="build"
+RUN_TARGET="run_qemu"
+
+assert_command "$MESON" || {
+	echo "Meson binary '$MESON' not found"
+	exit 1
+}
+sh scripts/build.sh "$ARCHITECTURE"
+
 mkdir -p "$LOG_DIR"
 touch "$LOG_FILE"
 
-MESON="meson"
-
-if ! command -v "$MESON" >/dev/null 2>&1; then
-	echo "Meson binary '$MESON' not found"
-	exit 1
-fi
-
 echo "Running project..."
-
-BUILD_DIR="build"
-RUN_TARGET="run_qemu"
 
 if ! "$MESON" compile "$RUN_TARGET" -C "$BUILD_DIR" >"$LOG_FILE" 2>&1; then
 	echo "Failed to run project"

@@ -9,29 +9,28 @@
 
 set -euo pipefail
 
-if [ "$#" -lt 1 ]; then
-	echo "Invalid usage of run.sh, expected an architecture as the first argument"
+source scripts/lib/assert_command.sh
+source scripts/lib/fetch_argument.sh
+
+NINJA="ninja"
+ARCHITECTURE=$(fetch_argument 0 $@ 2>/dev/null) || {
+	echo "Invalid usage of setup.sh, expected an architecture as the first argument"
 	exit 1
-fi
-
-
-ARCHITECTURE="$1"
-sh scripts/setup.sh "$ARCHITECTURE"
+}
 
 LOG_FILE="logs/ninja-build.log"
 LOG_DIR=$(dirname "$LOG_FILE")
 
-mkdir -p "$LOG_DIR"
-touch "$LOG_FILE"
+BUILD_DIR="build"
 
-NINJA="ninja"
-
-if ! command -v "$NINJA" >/dev/null 2>&1; then
+assert_command "$NINJA" || {
 	echo "Ninja binary '$NINJA' not found"
 	exit 1
-fi
+}
+sh scripts/setup.sh "$ARCHITECTURE"
 
-BUILD_DIR="build"
+mkdir -p "$LOG_DIR"
+touch "$LOG_FILE"
 
 if ! "$NINJA" -C "$BUILD_DIR" >"$LOG_FILE" 2>&1; then
 	echo "Failed to build project"
