@@ -9,13 +9,6 @@
 
 set -euo pipefail
 
-MESON="meson"
-
-if ! command -v "$MESON" >/dev/null 2>&1; then
-	echo "Meson binary '$MESON' not found"
-	exit 1
-fi
-
 if [ "$#" -lt 1 ]; then
 	echo "Invalid usage of setup.sh, expected an architecture as the first argument"
 	exit 1
@@ -33,6 +26,13 @@ CROSS_FILE="$TOOLCHAIN_DIR/$ARCHITECTURE-toolchain.conf"
 
 if [ ! -f "$CROSS_FILE" ]; then
 	echo "Cross compilation file not found: $CROSS_FILE"
+	exit 1
+fi
+
+MESON="meson"
+
+if ! command -v "$MESON" >/dev/null 2>&1; then
+	echo "Meson binary '$MESON' not found"
 	exit 1
 fi
 

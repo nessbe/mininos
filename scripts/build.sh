@@ -9,19 +9,20 @@
 
 set -euo pipefail
 
-BUILD_DIR="build"
-
-if [ ! -d "$BUILD_DIR" ]; then
-	echo "Project setup was not detected. Attempting setup..."
-
-	if [ "$#" -lt 1 ]; then
-		echo "Building without prior setup requires specifying an architecture as the first argument"
-		exit 1
-	fi
-
-	ARCHITECTURE="$1"
-	sh scripts/setup.sh "$ARCHITECTURE"
+if [ "$#" -lt 1 ]; then
+	echo "Invalid usage of run.sh, expected an architecture as the first argument"
+	exit 1
 fi
+
+
+ARCHITECTURE="$1"
+sh scripts/setup.sh "$ARCHITECTURE"
+
+LOG_FILE="logs/ninja-build.log"
+LOG_DIR=$(dirname "$LOG_FILE")
+
+mkdir -p "$LOG_DIR"
+touch "$LOG_FILE"
 
 NINJA="ninja"
 
@@ -30,11 +31,7 @@ if ! command -v "$NINJA" >/dev/null 2>&1; then
 	exit 1
 fi
 
-LOG_FILE="logs/ninja-build.log"
-LOG_DIR=$(dirname "$LOG_FILE")
-
-mkdir -p "$LOG_DIR"
-touch "$LOG_FILE"
+BUILD_DIR="build"
 
 if ! "$NINJA" -C "$BUILD_DIR" >"$LOG_FILE" 2>&1; then
 	echo "Failed to build project"
