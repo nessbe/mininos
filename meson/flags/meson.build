@@ -19,3 +19,9 @@ c_elf_flags = [
 	'-m32',
 	optimization_flag
 ]
+
+link_elf_flags = [
+	'-nostdlib',
+	'-ffreestanding',
+	optimization_flag
+]
