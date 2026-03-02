@@ -19,3 +19,11 @@ kernel_elf = executable(
 	c_args: c_elf_flags,
 	link_depends: 'linker.ld'
 )
+
+kernel_bin = custom_target(
+	'kernel.bin',
+	input: kernel_elf,
+	output: 'kernel.bin',
+	command: [ objcopy, '-O', 'binary', '@INPUT@', '@OUTPUT@' ],
+	build_by_default: true
+)
