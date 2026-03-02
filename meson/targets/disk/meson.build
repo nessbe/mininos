@@ -1,9 +1,6 @@
-# meson/targets/meson.build
+# meson/targets/disk/meson.build
 #
 # Copyright (c) 2026-Present Nessbe
 #
 # This file is licensed under the terms specified in the
 # LICENSE file located at the root of this repository.
-
-subdir('disk')
-subdir('qemu')
