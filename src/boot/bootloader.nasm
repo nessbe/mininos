@@ -24,6 +24,8 @@ start:
 	mov si, boot_message
 	call print_string
 
+	jmp protected_mode
+
 .halt:
 	hlt
 	jmp .halt
@@ -32,6 +34,8 @@ start:
 %include "src/boot/print_string.nasm"
 
 boot_message db 'MininOS booted successfully', 0
+
+%include "src/boot/protected_mode.nasm"
 
 times 510 - ($ - $$) db 0
 dw 0xAA55
