@@ -17,6 +17,10 @@ start:
 	mov sp, 0x7C00
 	sti
 
+	mov ah, 0x00
+	mov al, 0x03
+	int 0x10
+
 	mov si, boot_message
 	call print_string
 
