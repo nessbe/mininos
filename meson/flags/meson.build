@@ -8,11 +8,13 @@
 optimization_flag = '-O0'
 
 nasm_binary_flags = [
-	'-f', 'bin'
+	'-f', 'bin',
+	'-i', meson.source_root()
 ]
 
 nasm_elf32_flags = [
-	'-f', 'elf32'
+	'-f', 'elf32',
+	'-i', meson.source_root()
 ]
 
 c_elf_flags = [
