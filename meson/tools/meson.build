@@ -7,6 +7,7 @@
 
 nasm = find_program('nasm', required: true)
 cc = find_program('c', required: true)
+ld = find_program('ld', required: true)
 
 qemu = find_program('qemu', required: true)
 
