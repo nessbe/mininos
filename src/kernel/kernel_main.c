@@ -1,11 +1,11 @@
-// src/kernel/kmain.c
+// src/kernel/kernel_main.c
 //
 // Copyright (c) 2026-Present Nessbe
 //
 // This file is licensed under the terms specified in the
 // LICENSE file located at the root of this repository.
 
-void kmain(void)
+void kernel_main(void)
 {
 	volatile char* vga = (volatile char*)0xB8000;
 

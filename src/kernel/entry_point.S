@@ -12,7 +12,7 @@
 
 	_start:
 		cli
-		call kmain
+		call kernel_main
 
 	.halt:
 		hlt

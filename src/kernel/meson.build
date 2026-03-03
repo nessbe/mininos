@@ -7,7 +7,7 @@
 
 kernel_sources = files(
 	'entry_point.S',
-	'kmain.c'
+	'kernel_main.c'
 )
 
 kernel_elf = executable(
