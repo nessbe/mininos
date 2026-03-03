@@ -28,6 +28,7 @@ start:
 	hlt
 	jmp .halt
 
+%include "src/boot/gdt.nasm"
 %include "src/boot/print_string.nasm"
 
 boot_message db 'MininOS booted successfully', 0
