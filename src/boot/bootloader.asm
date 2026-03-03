@@ -1,4 +1,4 @@
-; src/boot/bootloader.nasm
+; src/boot/bootloader.asm
 ;
 ; Copyright (c) 2026-Present Nessbe
 ;
@@ -30,12 +30,12 @@ start:
 	hlt
 	jmp .halt
 
-%include "src/boot/gdt.nasm"
-%include "src/boot/print_string.nasm"
+%include "src/boot/gdt.inc"
+%include "src/boot/print_string.inc"
 
 boot_message db 'MininOS booted successfully', 0
 
-%include "src/boot/protected_mode.nasm"
+%include "src/boot/protected_mode.inc"
 
 times 510 - ($ - $$) db 0
 dw 0xAA55

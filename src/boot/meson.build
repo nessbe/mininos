@@ -7,7 +7,7 @@
 
 bootloader = custom_target(
 	'bootloader',
-	input: 'bootloader.nasm',
+	input: 'bootloader.asm',
 	output: 'bootloader.bin',
 	command: [
 		[ nasm ] + nasm_binary_flags + [ '@INPUT@', '-o', '@OUTPUT@' ]

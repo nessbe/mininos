@@ -1,4 +1,4 @@
-; src/boot/gdt.nasm
+; src/boot/gdt.inc
 ;
 ; Copyright (c) 2026-Present Nessbe
 ;

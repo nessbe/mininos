@@ -1,4 +1,4 @@
-; src/boot/protected_mode.nasm
+; src/boot/protected_mode.inc
 ;
 ; Copyright (c) 2026-Present Nessbe
 ;

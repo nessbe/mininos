@@ -1,4 +1,4 @@
-; src/boot/print_string.nasm
+; src/boot/print_string.inc
 ;
 ; Copyright (c) 2026-Present Nessbe
 ;
