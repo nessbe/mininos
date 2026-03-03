@@ -8,8 +8,11 @@
 optimization_flag = '-O0'
 
 nasm_binary_flags = [
-	'-f',
-	'bin'
+	'-f', 'bin'
+]
+
+nasm_elf32_flags = [
+	'-f', 'elf32'
 ]
 
 c_elf_flags = [
