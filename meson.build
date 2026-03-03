@@ -9,4 +9,4 @@ project('mininos', [ 'c', 'nasm' ], default_options: [ 'c_std=gnu11' ])
 
 subdir('meson')
 subdir('src')
-subdir('meson/targets')
+subdir('targets')
