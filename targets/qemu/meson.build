@@ -7,5 +7,8 @@
 
 run_qemu = run_target(
 	'run_qemu',
-	command: [ qemu, '-drive', 'format=raw,file=@0@'.format(bootloader.full_path()) ]
+	command: [
+		qemu, '-hda', disk.full_path()
+	],
+	depends: disk
 )
