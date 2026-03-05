@@ -17,9 +17,11 @@ kernel_elf = executable(
 		'-T', '@0@/linker.ld'.format(meson.current_source_dir())
 	],
 	link_depends: 'linker.ld',
+	include_directories: driver_include,
 	dependencies: [
 		kernel_flags,
-		libc_dep
+		libc_dep,
+		driver_deps
 	]
 )
 

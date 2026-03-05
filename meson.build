@@ -8,6 +8,7 @@
 project('mininos', [ 'c', 'nasm' ], default_options: [ 'c_std=gnu11' ])
 
 libc_include = include_directories('include/libc')
+driver_include = include_directories('include/drivers')
 
 subdir('meson')
 subdir('src')
