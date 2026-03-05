@@ -14,7 +14,7 @@ protected_mode:
 	lgdt [gdt_descriptor]
 
 	mov eax, cr0
-	or al, 1
+	or eax, 1
 	mov cr0, eax
 
 	jmp CODE_SEGMENT:pm_main
@@ -35,4 +35,4 @@ pm_main:
 	or al, 2
 	out 0x92, al
 
-	jmp $
+	jmp CODE_SEGMENT:KERNEL_START_ADDRESS
