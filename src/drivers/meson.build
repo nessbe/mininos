@@ -9,4 +9,5 @@ driver_deps = []
 
 if get_option('driver_vga')
 	subdir('vga')
+	driver_deps += vga_dep
 endif
