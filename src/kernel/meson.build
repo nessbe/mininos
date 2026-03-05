@@ -25,7 +25,9 @@ kernel_elf = executable(
 	dependencies: [
 		kernel_flags,
 		kernel_include,
-		libc_dep
+		libc_dep,
+		driver_deps,
+		driver_include
 	]
 )
 
