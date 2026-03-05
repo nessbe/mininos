@@ -14,4 +14,4 @@ if [ -d "$BUILD_DIR" ]; then
 	echo "Removed build directory '$BUILD_DIR'"
 fi
 
-echo "Project build was successful"
+echo "Project clean was successful"

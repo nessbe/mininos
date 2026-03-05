@@ -38,6 +38,8 @@ fi
 mkdir -p "$LOG_DIR"
 touch "$LOG_FILE"
 
+sh scripts/clean.sh
+
 if ! "$MESON" setup --reconfigure "$BUILD_DIR" --cross-file "$CROSS_FILE" >"$LOG_FILE" 2>&1; then
 	echo "Failed to setup project"
 
