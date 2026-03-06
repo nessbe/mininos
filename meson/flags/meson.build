@@ -21,12 +21,21 @@ c_elf_flags = [
 	'-ffreestanding',
 	'-fno-stack-protector',
 	'-fno-pic',
+	'-fno-builtin',
+	'-fno-omit-frame-pointer',
+	'-nostdinc',
 	'-m32',
+	'-Wall',
+	'-Wextra',
 	optimization_flag
 ]
 
 link_elf_flags = [
 	'-nostdlib',
-	'-ffreestanding',
-	optimization_flag
+	'-ffreestanding'
 ]
+
+kernel_flags = declare_dependency(
+	compile_args: c_elf_flags,
+	link_args: link_elf_flags
+)

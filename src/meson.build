@@ -6,4 +6,5 @@
 # LICENSE file located at the root of this repository.
 
 subdir('boot')
+subdir('libc')
 subdir('kernel')

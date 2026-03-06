@@ -7,6 +7,8 @@
 
 project('mininos', [ 'c', 'nasm' ], default_options: [ 'c_std=gnu11' ])
 
+libc_include = include_directories('include/libc')
+
 subdir('meson')
 subdir('src')
 subdir('targets')
