@@ -23,6 +23,7 @@ c_elf_flags = [
 	'-fno-pic',
 	'-fno-builtin',
 	'-fno-omit-frame-pointer',
+	'-nostdinc',
 	'-m32',
 	'-Wall',
 	'-Wextra',
