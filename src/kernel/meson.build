@@ -13,11 +13,11 @@ kernel_sources = files(
 kernel_elf = executable(
 	'kernel.elf',
 	kernel_sources,
-	link_args: link_elf_flags + [
+	link_args: [
 		'-T', '@0@/linker.ld'.format(meson.current_source_dir())
 	],
-	c_args: c_elf_flags,
-	link_depends: 'linker.ld'
+	link_depends: 'linker.ld',
+	dependencies: kernel_flags
 )
 
 kernel_bin = custom_target(
