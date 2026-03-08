@@ -10,7 +10,7 @@ vga_sources = []
 vga_lib = static_library(
 	'vga',
 	vga_sources,
-	include_directories: driver_include
+	dependencies: driver_include
 )
 
 vga_dep = declare_dependency(
