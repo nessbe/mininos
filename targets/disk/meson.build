@@ -1,4 +1,4 @@
-# meson/targets/disk/meson.build
+# targets/disk/meson.build
 #
 # Copyright (c) 2026-Present Nessbe
 #

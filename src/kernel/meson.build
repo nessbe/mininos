@@ -1,4 +1,4 @@
-# src/kernel/meson.build
+# kernel/meson.build
 #
 # Copyright (c) 2026-Present Nessbe
 #
