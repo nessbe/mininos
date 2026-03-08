@@ -13,13 +13,15 @@ kernel_sources = files(
 	'kernel_main.c'
 )
 
+linker_file = files('linker.ld')
+
 kernel_elf = executable(
 	'kernel.elf',
 	kernel_sources,
 	link_args: [
-		'-T', '@0@/linker.ld'.format(meson.current_source_dir())
+		'-T', linker_file[0].full_path()
 	],
-	link_depends: 'linker.ld',
+	link_depends: linker_file,
 	dependencies: [
 		kernel_flags,
 		kernel_include,
