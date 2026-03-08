@@ -5,7 +5,17 @@
 # This file is licensed under the terms specified in the
 # LICENSE file located at the root of this repository.
 
-project('mininos', [ 'c', 'nasm' ], default_options: [ 'c_std=gnu11' ])
+project(
+	'mininos',
+	[
+		'c',
+		'nasm'
+	],
+	version: '1.4.0',
+	default_options: [
+		'c_std=gnu11'
+	]
+)
 
 libc_include_dir = include_directories('include/libc')
 libc_include = declare_dependency(
