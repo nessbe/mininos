@@ -5,7 +5,9 @@
 # This file is licensed under the terms specified in the
 # LICENSE file located at the root of this repository.
 
-vga_sources = []
+vga_sources = files(
+	'vga.c'
+)
 
 vga_lib = static_library(
 	'vga',
