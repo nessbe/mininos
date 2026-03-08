@@ -7,8 +7,15 @@
 
 project('mininos', [ 'c', 'nasm' ], default_options: [ 'c_std=gnu11' ])
 
-libc_include = include_directories('include/libc')
-kernel_include = include_directories('include/kernel')
+libc_include_dir = include_directories('include/libc')
+libc_include = declare_dependency(
+	include_directories: libc_include_dir
+)
+
+kernel_include_dir = include_directories('include/kernel')
+kernel_include = declare_dependency(
+	include_directories: kernel_include_dir
+)
 
 subdir('meson')
 subdir('src')

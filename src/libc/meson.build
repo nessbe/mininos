@@ -12,11 +12,11 @@ libc_sources = files(
 libc = static_library(
 	'c',
 	libc_sources,
-	include_directories: libc_include,
-	c_args: c_elf_flags
+	c_args: c_elf_flags,
+	dependencies: libc_include
 )
 
 libc_dep = declare_dependency(
 	link_with: libc,
-	include_directories: libc_include
+	dependencies: libc_include
 )
