@@ -23,6 +23,8 @@ typedef enum errcode {
 
 	ERRCODE_OVERFLOW,
 	ERRCODE_UNDERFLOW,
+
+	ERRCODE_OUT_OF_RANGE,
 } errcode_t;
 
 EXTERN_C_END
