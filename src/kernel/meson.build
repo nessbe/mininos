@@ -50,8 +50,8 @@ kernel_bin = custom_target(
 		'dd',
 		'if=@INPUT@',
 		'of=@OUTPUT@',
-		'bs=@0@'.format(SECTOR_SIZE),
-		'count=@0@'.format(KERNEL_SECTOR_COUNT),
+		'bs=' + SECTOR_SIZE.to_string(),
+		'count=' + KERNEL_SECTOR_COUNT.to_string(),
 		'conv=sync'
 	],
 	build_by_default: true

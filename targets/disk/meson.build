@@ -11,8 +11,8 @@ disk = custom_target(
 	input: [ bootloader, kernel_bin ],
 	command: [
 		'cat',
-		'@0@/@INPUT0@'.format(meson.project_build_root()),
-		'@0@/@INPUT1@'.format(meson.project_build_root()),
+		'@INPUT0@',
+		'@INPUT1@',
 	],
 	capture: true,
 	build_by_default: true
