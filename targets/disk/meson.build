@@ -15,6 +15,5 @@ disk = custom_target(
 		'@0@/@INPUT1@'.format(meson.project_build_root()),
 	],
 	capture: true,
-	depends: [ bootloader, kernel_bin ],
 	build_by_default: true
 )
