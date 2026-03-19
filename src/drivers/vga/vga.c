@@ -40,3 +40,18 @@ errcode_t vga_set(size_t idx, uint8_t c, uint8_t attr)
 
 	return ERRCODE_OK;
 }
+
+size_t vga_idx(size_t x, size_t y)
+{
+	return y * VGA_WIDTH + x;
+}
+
+errcode_t vga_read(size_t x, size_t y, uint8_t *c, uint8_t *attr)
+{
+	return vga_get(vga_idx(x, y), c, attr);
+}
+
+errcode_t vga_write(size_t x, size_t y, uint8_t c, uint8_t attr)
+{
+	return vga_set(vga_idx(x, y), c, attr);
+}

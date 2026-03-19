@@ -26,6 +26,11 @@ extern "C"
 errcode_t vga_get(size_t idx, uint8_t *c, uint8_t *attr);
 errcode_t vga_set(size_t idx, uint8_t c, uint8_t attr);
 
+size_t vga_idx(size_t x, size_t y);
+
+errcode_t vga_read(size_t x, size_t y, uint8_t *c, uint8_t *attr);
+errcode_t vga_write(size_t x, size_t y, uint8_t c, uint8_t attr);
+
 #ifdef __cplusplus
 }
 #endif
