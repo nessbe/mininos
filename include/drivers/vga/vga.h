@@ -8,6 +8,7 @@
 #ifndef VGA_H
 #define VGA_H
 
+#include <stdbool.h>
 #include <stddef.h>
 #include <stdint.h>
 
@@ -23,13 +24,25 @@ extern "C"
 #define VGA_HEIGHT  25
 #define VGA_SIZE    (VGA_WIDTH * VGA_HEIGHT)
 
-errcode_t vga_get(size_t idx, uint8_t *c, uint8_t *attr);
-errcode_t vga_set(size_t idx, uint8_t c, uint8_t attr);
+bool vga_out_of_range(size_t idx);
+errcode_t vga_read(size_t idx, uint8_t *c, uint8_t *attr);
+errcode_t vga_write(size_t idx, uint8_t c, uint8_t attr);
 
 size_t vga_idx(size_t x, size_t y);
 
-errcode_t vga_read(size_t x, size_t y, uint8_t *c, uint8_t *attr);
-errcode_t vga_write(size_t x, size_t y, uint8_t c, uint8_t attr);
+bool vga_out_of_rangep(size_t x, size_t y);
+errcode_t vga_readp(size_t x, size_t y, uint8_t *c, uint8_t *attr);
+errcode_t vga_writep(size_t x, size_t y, uint8_t c, uint8_t attr);
+
+void vga_attr(uint8_t attr);
+
+errcode_t vga_peek(uint8_t *c, uint8_t *attr);
+
+errcode_t vga_get(uint8_t *c, uint8_t *attr);
+errcode_t vga_set(uint8_t c);
+
+errcode_t vga_seek(size_t idx);
+errcode_t vga_seekp(size_t x, size_t y);
 
 #ifdef __cplusplus
 }

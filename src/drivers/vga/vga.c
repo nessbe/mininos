@@ -7,9 +7,17 @@
 
 #include <vga/vga.h>
 
-errcode_t vga_get(size_t idx, uint8_t *c, uint8_t *attr)
+static size_t __vga_pos__ = 0;
+static uint8_t __vga_attr__ = 0x0F;
+
+bool vga_out_of_range(size_t idx)
 {
-	if (idx >= VGA_SIZE)
+	return idx >= VGA_SIZE;
+}
+
+errcode_t vga_read(size_t idx, uint8_t *c, uint8_t *attr)
+{
+	if (vga_out_of_range(idx))
 	{
 		return ERRCODE_OUT_OF_RANGE;
 	}
@@ -29,9 +37,9 @@ errcode_t vga_get(size_t idx, uint8_t *c, uint8_t *attr)
 	return ERRCODE_OK;
 }
 
-errcode_t vga_set(size_t idx, uint8_t c, uint8_t attr)
+errcode_t vga_write(size_t idx, uint8_t c, uint8_t attr)
 {
-	if (idx >= VGA_SIZE)
+	if (vga_out_of_range(idx))
 	{
 		return ERRCODE_OUT_OF_RANGE;
 	}
@@ -46,12 +54,56 @@ size_t vga_idx(size_t x, size_t y)
 	return y * VGA_WIDTH + x;
 }
 
-errcode_t vga_read(size_t x, size_t y, uint8_t *c, uint8_t *attr)
+bool vga_out_of_rangep(size_t x, size_t y)
 {
-	return vga_get(vga_idx(x, y), c, attr);
+	return vga_out_of_range(vga_idx(x, y));
 }
 
-errcode_t vga_write(size_t x, size_t y, uint8_t c, uint8_t attr)
+errcode_t vga_readp(size_t x, size_t y, uint8_t *c, uint8_t *attr)
 {
-	return vga_set(vga_idx(x, y), c, attr);
+	return vga_read(vga_idx(x, y), c, attr);
+}
+
+errcode_t vga_writep(size_t x, size_t y, uint8_t c, uint8_t attr)
+{
+	return vga_write(vga_idx(x, y), c, attr);
+}
+
+void vga_attr(uint8_t attr)
+{
+	__vga_attr__ = attr;
+}
+
+errcode_t vga_peek(uint8_t *c, uint8_t *attr)
+{
+	return vga_read(__vga_pos__, c, attr);
+}
+
+errcode_t vga_seek(size_t idx)
+{
+	if (vga_out_of_range(idx))
+	{
+		return ERRCODE_OUT_OF_RANGE;
+	}
+
+	__vga_pos__ = idx;
+
+	return ERRCODE_OK;
+}
+
+errcode_t vga_seekp(size_t x, size_t y)
+{
+	return vga_seek(vga_idx(x, y));
+}
+
+errcode_t vga_get(uint8_t *c, uint8_t *attr)
+{
+	errcode_t err = vga_peek(c, attr);
+	__vga_pos__++;
+	return err;
+}
+
+errcode_t vga_set(uint8_t c)
+{
+	return vga_write(__vga_pos__, c, __vga_attr__);
 }
