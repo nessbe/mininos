@@ -44,6 +44,9 @@ errcode_t vga_set(uint8_t c);
 errcode_t vga_seek(size_t idx);
 errcode_t vga_seekp(size_t x, size_t y);
 
+errcode_t vga_putc(uint8_t c);
+errcode_t vga_puts(const uint8_t *str);
+
 #ifdef __cplusplus
 }
 #endif

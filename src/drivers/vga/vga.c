@@ -7,6 +7,8 @@
 
 #include <vga/vga.h>
 
+#include <string.h>
+
 static size_t __vga_pos__ = 0;
 static uint8_t __vga_attr__ = 0x0F;
 
@@ -106,4 +108,28 @@ errcode_t vga_get(uint8_t *c, uint8_t *attr)
 errcode_t vga_set(uint8_t c)
 {
 	return vga_write(__vga_pos__, c, __vga_attr__);
+}
+
+errcode_t vga_putc(uint8_t c)
+{
+	errcode_t err = vga_set(c);
+	__vga_pos__++;
+	return err;
+}
+
+errcode_t vga_puts(const uint8_t *str)
+{
+	size_t len = strlen(str);
+
+	for (size_t i = 0; i < len; i++)
+	{
+		errcode_t err = vga_putc(str[i]);
+
+		if (err != ERRCODE_OK)
+		{
+			return err;
+		}
+	}
+
+	return ERRCODE_OK;
 }
