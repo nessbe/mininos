@@ -71,6 +71,39 @@ errcode_t vga_writep(size_t x, size_t y, uint8_t c, uint8_t attr)
 	return vga_write(vga_idx(x, y), c, attr);
 }
 
+errcode_t vga_fill(size_t x, size_t y, size_t w, size_t h, uint8_t c, uint8_t attr)
+{
+	if (vga_out_of_rangep(x, y))
+	{
+		return ERRCODE_OUT_OF_RANGE;
+	}
+
+	if (vga_out_of_rangep(x + w, y + h))
+	{
+		return ERRCODE_OUT_OF_RANGE;
+	}
+
+	for (size_t j = y; j < y + h; j++)
+	{
+		for (size_t i = x; i < x + w; i++)
+		{
+			errcode_t err = vga_writep(i, j, c, attr);
+
+			if (err != ERRCODE_OK)
+			{
+				return err;
+			}
+		}
+	}
+
+	return ERRCODE_OK;
+}
+
+void vga_clear(uint8_t c, uint8_t attr)
+{
+	vga_fill(0, 0, VGA_WIDTH - 1, VGA_HEIGHT - 1, c, attr);
+}
+
 void vga_attr(uint8_t attr)
 {
 	__vga_attr__ = attr;

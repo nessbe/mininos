@@ -34,6 +34,9 @@ bool vga_out_of_rangep(size_t x, size_t y);
 errcode_t vga_readp(size_t x, size_t y, uint8_t *c, uint8_t *attr);
 errcode_t vga_writep(size_t x, size_t y, uint8_t c, uint8_t attr);
 
+errcode_t vga_fill(size_t x, size_t y, size_t w, size_t h, uint8_t c, uint8_t attr);
+void vga_clear(uint8_t c, uint8_t attr);
+
 void vga_attr(uint8_t attr);
 
 errcode_t vga_peek(uint8_t *c, uint8_t *attr);
