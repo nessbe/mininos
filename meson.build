@@ -22,6 +22,11 @@ libc_include = declare_dependency(
 	include_directories: libc_include_dir
 )
 
+driver_include_dir = include_directories('include/drivers')
+driver_include = declare_dependency(
+	include_directories: driver_include_dir
+)
+
 kernel_include_dir = include_directories('include/kernel')
 kernel_include = declare_dependency(
 	include_directories: kernel_include_dir

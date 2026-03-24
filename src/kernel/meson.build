@@ -25,7 +25,9 @@ kernel_elf = executable(
 	dependencies: [
 		kernel_flags,
 		kernel_include,
-		libc_dep
+		libc_dep,
+		driver_deps,
+		driver_include
 	]
 )
 
@@ -42,17 +44,17 @@ kernel_raw = custom_target(
 	build_by_default: true
 )
 
+pad_kernel = files(meson.project_source_root() / 'scripts/tools/pad_kernel.sh')[0]
+
 kernel_bin = custom_target(
 	'kernel.bin',
 	input: kernel_raw,
 	output: 'kernel.bin',
 	command: [
-		'dd',
-		'if=@INPUT@',
-		'of=@OUTPUT@',
-		'bs=' + SECTOR_SIZE.to_string(),
-		'count=' + KERNEL_SECTOR_COUNT.to_string(),
-		'conv=sync'
+		'sh', pad_kernel,
+		'@INPUT@',
+		'@OUTPUT@',
+		(SECTOR_SIZE * KERNEL_SECTOR_COUNT).to_string()
 	],
 	build_by_default: true
 )

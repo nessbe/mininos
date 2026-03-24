@@ -1,0 +1,57 @@
+// include/drivers/vga/vga.h
+//
+// Copyright (c) 2026-Present Nessbe
+//
+// This file is licensed under the terms specified in the
+// LICENSE file located at the root of this repository.
+
+#ifndef VGA_H
+#define VGA_H
+
+#include <stdbool.h>
+#include <stddef.h>
+#include <stdint.h>
+
+#include <errcode.h>
+
+#ifdef __cplusplus
+extern "C"
+{
+#endif
+
+bool vga_out_of_bounds(size_t idx);
+errcode_t vga_read(size_t idx, uint8_t *c, uint8_t *attr);
+errcode_t vga_write(size_t idx, uint8_t c, uint8_t attr);
+
+size_t vga_idx(size_t x, size_t y);
+
+bool vga_out_of_bounds_xy(size_t x, size_t y);
+errcode_t vga_read_xy(size_t x, size_t y, uint8_t *c, uint8_t *attr);
+errcode_t vga_write_xy(size_t x, size_t y, uint8_t c, uint8_t attr);
+
+errcode_t vga_fill(size_t x, size_t y, size_t w, size_t h, uint8_t c, uint8_t attr);
+void vga_clear(uint8_t c, uint8_t attr);
+
+void vga_set_attr(uint8_t attr);
+uint8_t vga_get_attr(void);
+
+size_t vga_pos(void);
+errcode_t vga_seek(size_t idx);
+errcode_t vga_seek_xy(size_t x, size_t y);
+
+errcode_t vga_skip(size_t count);
+errcode_t vga_newline(void);
+
+errcode_t vga_peek(uint8_t *c, uint8_t *attr);
+
+errcode_t vga_get(uint8_t *c, uint8_t *attr);
+errcode_t vga_set(uint8_t c);
+
+errcode_t vga_putc(uint8_t c);
+errcode_t vga_puts(const char *str);
+
+#ifdef __cplusplus
+}
+#endif
+
+#endif

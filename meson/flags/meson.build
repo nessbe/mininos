@@ -35,6 +35,11 @@ link_elf_flags = [
 	'-ffreestanding'
 ]
 
+driver_flags = declare_dependency(
+	compile_args: c_elf_flags,
+	link_args: link_elf_flags
+)
+
 kernel_flags = declare_dependency(
 	compile_args: c_elf_flags,
 	link_args: link_elf_flags
