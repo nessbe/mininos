@@ -114,6 +114,73 @@ errcode_t vga_peek(uint8_t *c, uint8_t *attr)
 	return vga_read(__vga_pos__, c, attr);
 }
 
+errcode_t vga_skip()
+{
+	if (vga_out_of_range(__vga_pos__))
+	{
+		return ERRCODE_OUT_OF_RANGE;
+	}
+
+	__vga_pos__++;
+	return ERRCODE_OK;
+}
+
+errcode_t vga_skipn(size_t n)
+{
+	for (size_t i = 0; i < n; i++)
+	{
+		errcode_t err = vga_skip();
+
+		if (err != ERRCODE_OK)
+		{
+			return err;
+		}
+	}
+}
+
+errcode_t vga_skipl()
+{
+	if (vga_out_of_range(__vga_pos__))
+	{
+		return ERRCODE_OUT_OF_RANGE;
+	}
+
+	size_t line_count = (__vga_pos__ + VGA_WIDTH) / VGA_WIDTH;
+	__vga_pos__ = line_count * VGA_WIDTH;
+
+	return ERRCODE_OK;
+}
+
+errcode_t vga_skipln(size_t n)
+{
+	for (size_t i = 0; i < n; i++)
+	{
+		errcode_t err = vga_skipl();
+
+		if (err != ERRCODE_OK)
+		{
+			return err;
+		}
+	}
+}
+
+errcode_t vga_get(uint8_t *c, uint8_t *attr)
+{
+	errcode_t err = vga_skip();
+
+	if (err != ERRCODE_OK)
+	{
+		return err;
+	}
+
+	return vga_peek(c, attr);
+}
+
+errcode_t vga_set(uint8_t c)
+{
+	return vga_write(__vga_pos__, c, __vga_attr__);
+}
+
 errcode_t vga_seek(size_t idx)
 {
 	if (vga_out_of_range(idx))
@@ -131,23 +198,21 @@ errcode_t vga_seekp(size_t x, size_t y)
 	return vga_seek(vga_idx(x, y));
 }
 
-errcode_t vga_get(uint8_t *c, uint8_t *attr)
-{
-	errcode_t err = vga_peek(c, attr);
-	__vga_pos__++;
-	return err;
-}
-
-errcode_t vga_set(uint8_t c)
-{
-	return vga_write(__vga_pos__, c, __vga_attr__);
-}
-
 errcode_t vga_putc(uint8_t c)
 {
+	if (c == '\n')
+	{
+		return vga_skipl();
+	}
+
 	errcode_t err = vga_set(c);
-	__vga_pos__++;
-	return err;
+
+	if (err != ERRCODE_OK)
+	{
+		return err;
+	}
+
+	return vga_skip();
 }
 
 errcode_t vga_puts(const uint8_t *str)

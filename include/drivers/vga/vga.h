@@ -41,6 +41,12 @@ void vga_attr(uint8_t attr);
 
 errcode_t vga_peek(uint8_t *c, uint8_t *attr);
 
+errcode_t vga_skip();
+errcode_t vga_skipn(size_t n);
+
+errcode_t vga_skipl();
+errcode_t vga_skipln(size_t n);
+
 errcode_t vga_get(uint8_t *c, uint8_t *attr);
 errcode_t vga_set(uint8_t c);
 
