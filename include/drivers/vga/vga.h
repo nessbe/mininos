@@ -19,11 +19,6 @@ extern "C"
 {
 #endif
 
-#define VGA_ADDRESS ((volatile uint16_t *)0xB8000)
-#define VGA_WIDTH   80
-#define VGA_HEIGHT  25
-#define VGA_SIZE    (VGA_WIDTH * VGA_HEIGHT)
-
 bool vga_out_of_range(size_t idx);
 errcode_t vga_read(size_t idx, uint8_t *c, uint8_t *attr);
 errcode_t vga_write(size_t idx, uint8_t c, uint8_t attr);

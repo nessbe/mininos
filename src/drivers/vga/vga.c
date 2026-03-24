@@ -9,6 +9,11 @@
 
 #include <string.h>
 
+#define VGA_ADDRESS ((volatile uint16_t *)0xB8000)
+#define VGA_WIDTH   80
+#define VGA_HEIGHT  25
+#define VGA_SIZE    (VGA_WIDTH * VGA_HEIGHT)
+
 static size_t __vga_pos__ = 0;
 static uint8_t __vga_attr__ = 0x0F;
 
